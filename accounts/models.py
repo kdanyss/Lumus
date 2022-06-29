@@ -9,7 +9,7 @@ class Profile(models.Model):
         ('Padrao', 'Padrao'),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    image = models.ImageField(default='Default.jpg', upload_to='profile_pics')
     profession = models.TextField(max_length=25, blank=True)
     moderator = models.CharField(choices=MODERATOR, max_length=10, default="Padrao")
 

@@ -1,0 +1,121 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+        crossorigin="anonymous">
+    <title>Navegação</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+</head>
+
+<body>
+    <section id="banner">
+        <header class="header-position-sticky">
+            <div class="header-mx" style="max-width: 100%;">
+                <a href="/"><img draggable="false" src="{% static 'img/logo.png' %}" alt="" class="logo"></a>
+                <img class="foto-perfil" draggable="false" src="{{ user.profile.image.url }}" alt="">
+            </div>
+        </header>
+    </section>
+    <section id="perfil">
+    </ul>
+        <aside>
+            <ul>
+                <li><a href="{% url 'profile' %}"><i class="fa-solid fa-user"></i> <span>Perfil</span></a></li>
+                <li><a href="{% url 'navegacao'%}"><i class="fas fa-sitemap"></i>
+                        <span>Explore</span></a></li>
+                <div class="aside-line"></div>
+                <li class="open-modal"><a href="comment"><i class="fa fa-cog"></i> <span>Comentar</span></a></li>
+                <li><a href="{% url 'logout'%}"><i class="fas fa-sign-out-alt"></i> <span>Sair</span></a></li>
+            </ul>
+        </aside>
+        <main style="align-items: flex-start;">
+            <div class="body-postagem">
+                <div class="conteudo-postagem">
+                    <article class="media content-section">
+                        <div class="media-body">
+                            <div class="article-metadata">
+                                <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}"
+                                    style="width: 40px; height: 40px;">
+                                <div class="postagem-nome">
+                                    <p class="mr-2">{{ object.author }}</p>
+                                    <p class="text-muted">{{ object.date_posted|date:"d M, Y, G" }} Horas</p>
+                                </div>
+                            </div>
+                            <h2 class="article-title">{{ object.title }}</h2>
+                            <p class="postagem-paragrafo article-content">{{ object.content }}</p>
+                            <p class="categorias-postagens article-content"><span class="link-categoria">{{ object.category.all }}</span>
+                                 </p>
+                            {% if post.image %}
+                         
+                            <img class="article-img" src="{{ post.image.url }}"
+                                style="max-width: 220px; max-height: 200px;">
+                            {% endif %}
+                        </div>
+                        <div class="postagem-acoes">
+                            <i class="fas fa-ellipsis-v"></i>
+                            <div class="postagem-acoes-dropwn">
+                                {% if object.author == user or user.profile.moderator == 'Moderator' %}
+                                <ul class="navbar-nav">
+                                    <li><a class="dropdown-item" href="{% url 'post-update' object.id %}">Editar
+                                            Post</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'post-delete' object.id %}">Excluir
+                                            Post</a></li>
+                                </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <!-- Comentários -->
+                <div class="comentarios">
+                    {% for comment in comment_list %}
+                    <article class="media content-section">
+                        <div class="media-body">
+                            <div class="article-metadata">
+                                <img class="rounded-circle article-img" src="{{ comment.author.profile.image.url }}"
+                                    style="width: 40px; height: 40px;">
+                                <a>{{ comment.author }}</a>
+                                <small class="text-muted">{{ comment.date_posted|date:"d M, Y, G" }} Horas</small>
+                            </div>
+                            <h5 class="article-title">{{ comment.author }} comentou:</h5>
+                            <p class="article-content">{{ comment.content }}</p>
+                            {% if comment.image %}
+                            
+                            <img class="article-img" src="{{ comment.image.url }}"
+                                style="max-width: 220px; max-height: 200px; gap: 10px">
+                            {% endif %}
+                            <div class="postagem-acoes">
+                                <div class="postagem-acoes-dropwn">
+                                    {% if comment.author == user or user.profile.moderator == 'Moderator' %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <a class="dropdown-item" href="{% url 'comment-delete' comment.id %}">Excluir
+                            </a></li>
+                
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

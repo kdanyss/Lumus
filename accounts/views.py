@@ -15,7 +15,7 @@ def register(request):
             if form.is_valid():
                 form.save()
                 username = form.cleaned_data.get('username')
-                messages.success(request, f'Conta criada para {username}!')
+                #messages.success(request, f'Conta criada para {username}!')
                 return redirect('login')
     else: 
         form = UserRegisterForm()
@@ -31,7 +31,7 @@ def profile(request):
         if u_form.is_valid() and p_form.is_valid:
             u_form.save()
             p_form.save()
-            messages.success(request, f'Sua conta foi atualizada!')
+            #messages.success(request, f'Sua conta foi atualizada!')
             return redirect('profile')
     else:
         u_form = UserUpdateForm(instance=request.user)
@@ -50,6 +50,7 @@ def ChangePassword(request):
             form = PasswordChangeForm(data=request.POST, user=request.user)
             if form.is_valid():
                 form.save()
+                #messages.success(request, f'Sua conta foi atualizada!')
                 update_session_auth_hash(request, form.user)
                 return redirect('password_change_done')
             else:
@@ -61,7 +62,7 @@ def ChangePassword(request):
     }
     return render(request, 'accounts/password_reset.html', context)
 
-messages.debug
-messages.info
-messages.warning
-messages.error
+#messages.debug
+#messages.info
+#messages.warning
+#messages.error

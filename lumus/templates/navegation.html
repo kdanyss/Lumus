@@ -27,7 +27,7 @@
                 <form action="?" method="GET">
                     <input type="text" value="{{ request.GET.pesquisar }}" placeholder="O que você está procurando?" name="title" id="title" autocomplete="off">
                     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <a href="{% url 'navegacao' %}">Limpar</a>
+                    <button><a href="{% url 'navegacao' %}">Limpar</a></button>     
                 </form>
                 <img class="foto-perfil" draggable="false" src="{{ user.profile.image.url }}" alt="">
             </div>
@@ -39,6 +39,8 @@
                 <li><a href="{% url 'profile' %}"><i class="fa-solid fa-user"></i> <span>Perfil</span></a></li>
                 <li class="active"><a href="{% url 'navegacao'%}"><i class="fas fa-sitemap"></i>
                         <span>Explore</span></a></li>
+                <li class=""><a href="{% url 'category-list'%}"><i class="fas fa-sitemap"></i>
+                        <span>Categorias</span></a></li>
                 <div class="aside-line"></div>
                 <li><a href="{% url 'logout'%}"><i class="fas fa-sign-out-alt"></i> <span>Sair</span></a></li>
             </ul>
@@ -46,13 +48,13 @@
         <main style="align-items: flex-start;">
             <div class="body-postagem">
                 <div class="postagem-acoes">
-                    <button class="addPost"><a href="#"><i class="fas fa-plus"></i><span>Adicionar
+                    <button class="addPost" ><a href="{% url 'post-create' %}"><i class="fas fa-plus"></i><span>Adicionar
                                 nova
                                 postagem</span></a></button>
                 </div>
                 <div class="conteudo-postagem">
                     {% for post in posts %}
-                    <a href="#" class="media content-section">
+                    <a href="{% url 'post-detail' post.id %}" class="media content-section">
                         <div class="media-body">
                             <div class="article-metadata">
                                 <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}"
@@ -64,9 +66,9 @@
                             </div>
                             <h2>{{ post.title }}</h2>
                             <!-- <p class="postagem-paragrafo article-content">{{ post.content }}</p>-->
-                            <p class="categorias-postagens article-content"><span class="link-categoria">{{ post.category }}</span></p>
+                            <p class="categorias-postagens article-content"><span class="link-categoria">{{ post.category.all }}</span></p>
                             {% if post.image %}
-                            <p class="article-content">Img: {{ post.image }}</p>
+                            <p class="article-content"></p>
                             <img class="article-img" src="{{ post.image.url }}"
                                 style="max-width: 220px; max-height: 200px;">
                             {% endif %}

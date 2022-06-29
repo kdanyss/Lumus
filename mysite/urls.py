@@ -22,7 +22,6 @@ from accounts import views as accounts_views
 from django.conf import settings
 from django.conf.urls.static import static
 
-#uidb6 é um parametro de verificação e token é para aceitação do parametro
 
 urlpatterns = [
     path('admin/', admin.site.urls),

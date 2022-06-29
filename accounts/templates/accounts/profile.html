@@ -19,8 +19,6 @@
 
 <body>
 
-
-  <!-- NavBar -->
   <section id="banner">
     <header class="header-position-sticky">
       <div class="header-mx" style="max-width: 100%;">
@@ -29,6 +27,7 @@
       </div>
     </header>
   </section>
+
   <section id="perfil">
     <aside>
       <ul>
@@ -42,9 +41,8 @@
       <div class="perfil-informacoes">
         <img src="{{ user.profile.image.url }}" alt="">
         {% if user.profile.moderator == 'Moderator' %}
-        <li><a href="{% url 'category-list'%}"><i class="fas fa-sign-out-alt"></i><span>Categorias</span></a></li>
-
         <h2>@{{ user.profile.moderator }}</h2>
+        <a href="{% url 'category-list'%}">Categorias</a>
         {% else %}
         <h2>@{{ user.username }}</h2>
         {% endif %}
@@ -54,6 +52,7 @@
       </div>
     </main>
   </section>
+
   <section id="modal" class="modal">
     <div class="modal-content">
       <span class="close-modal">
@@ -68,13 +67,11 @@
             <img src="{{ user.profile.image.url }}" alt="">
             {{ p_form|crispy }}
           </div>
-
         </fieldset>
         <div class="form-group">
           <button class="btn btn-outline-info" type="submit">Atualizar</button>
         </div>
-        <li><a href="{% url 'password_reset'%}"><i class="fas fa-sign-out-alt"></i> <span>Senha Config</span></a></li>
-
+          <a href="{% url 'password_reset'%}">Alterar Senha</a>
       </form>
     </div>
   </section>

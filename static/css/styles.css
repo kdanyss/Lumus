@@ -1,7 +1,41 @@
 body {
   background-color: #F0F2F5;
 }
+.media-body {
+          background-color: #ffffff;
+          width: 800px;
+          padding: 20px;
+          border-radius: 5px;
+          margin-bottom: 20px;
+          box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.15);
 
+
+          h2 {
+            font-size: 1.3rem;
+            margin: 1rem 0;
+          }
+
+          .postagem-paragrafo {
+            font-weight: 300;
+          }
+
+          .categorias-postagens {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+
+            .link-categoria {
+              background: #EAEAEA;
+              border-radius: 5px;
+              color: #808080;
+              padding: .3rem 1rem;
+              margin-bottom: 5px;
+              margin-right: 5px;
+            }
+          }
+        }
+        
 #banner {
   width: 100%;
   height: auto;
@@ -84,7 +118,7 @@ body {
 
 #banner header .header-mx .foto-perfil {
   border-radius: 50%;
-  height: 70%;
+  height: 60%;
   aspect-ratio: 1;
 }
 
@@ -525,7 +559,7 @@ footer .footer-logo p {
 
 #perfil aside {
   width: 300px;
-  height: calc(100vh - 80px);
+  height: auto;
   background-color: #ededed;
   overflow-y: auto;
 }
@@ -540,6 +574,7 @@ footer .footer-logo p {
 #perfil aside ul {
   list-style: none;
   padding: 20px 0;
+  position: fixed;
 }
 
 #perfil aside ul li {
@@ -590,6 +625,16 @@ footer .footer-logo p {
   justify-content: center;
   align-items: center;
 }
+
+
+.dropdown-item{
+  width: 80px;
+  margin-top: 30px;
+  border-radius: 5%;
+  justify-content: flex-end;
+  background-color: #808080;
+}
+
 
 #perfil main .addPost {
   height: 50px;
@@ -681,7 +726,7 @@ footer .footer-logo p {
   display: block !important;
 }
 
-#perfil main .conteudo-postagem .content-section .media-body {
+#perfil main .conteudo-postagem .content-section .media-body{
   background-color: #ffffff;
   width: 800px;
   padding: 20px;
@@ -741,6 +786,9 @@ footer .footer-logo p {
 #perfil main .postagem-comentario .postagem-comentario-body {
   width: 800px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap:10px;
   border-radius: 5px;
   background-color: #ffffff;
 }
@@ -756,7 +804,8 @@ footer .footer-logo p {
 #perfil main .postagem-comentario .postagem-comentario-body .comentario-btn {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  gap:10px;
   margin-top: 1.2rem;
 }
 
@@ -783,8 +832,8 @@ footer .footer-logo p {
 
 #perfil main .perfil-informacoes img {
   width: 250px;
-  border-radius: 50%;
-  aspect-ratio: 1;
+  border-radius: 20%;
+  aspect-ratio: 0;
   margin: auto;
   display: block;
 }
