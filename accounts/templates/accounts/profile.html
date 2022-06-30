@@ -31,10 +31,11 @@
   <section id="perfil">
     <aside>
       <ul>
+        <li class="active"><a href="{% url 'profile' %}"><i class="fa-solid fa-user"></i> <span>Perfil</span></a></li>
         <li><a href="{% url 'navegacao'%}"><i class="fas fa-sitemap"></i> <span>Explore</span></a></li>
         <div class="aside-line"></div>
         <li class="open-modal"><i class="fa fa-cog"></i> <span>Configurações</span></li>
-        <li><a href="{% url 'logout'%}"><i class="fas fa-sign-out-alt"></i> <span>Sair</span></a></li>
+        <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span>Sair</span></a></li>
       </ul>
     </aside>
     <main>
@@ -42,7 +43,7 @@
         <img src="{{ user.profile.image.url }}" alt="">
         {% if user.profile.moderator == 'Moderator' %}
         <h2>@{{ user.profile.moderator }}</h2>
-        <a href="{% url 'category-list'%}">Categorias</a>
+        <button class="btn btn-outline-info"> <a href="{% url 'category-list' %}">Categorias</a></button>
         {% else %}
         <h2>@{{ user.username }}</h2>
         {% endif %}
@@ -70,8 +71,9 @@
         </fieldset>
         <div class="form-group">
           <button class="btn btn-outline-info" type="submit">Atualizar</button>
+          <button class="btn btn-outline-info"><a href="{% url 'password_reset' %}">Alterar Senha</a> </button>
         </div>
-          <a href="{% url 'password_reset'%}">Alterar Senha</a>
+      
       </form>
     </div>
   </section>

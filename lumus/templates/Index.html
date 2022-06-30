@@ -56,7 +56,8 @@
         <h2>Quem somos?</h2>
         <p>A equipe responsável comprometeu-se com o bom desenvolvimento do projeto e espera que o resultado alcançado auxilie você.
         </p>
-        <h6>Moderadores:</h6>
+        <h6>Em caso de dúvidas, </h6> 
+        <h6>entre em contato com os moderadores:</h6>
         {% for user in users %}
         {% if user.profile.moderator == 'Moderator' %}
           <h7>{{ user.email }}</h7>
